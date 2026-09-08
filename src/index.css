@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Sora', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Fraunces', serif;
+}
+
+/* tabular numerals for stat blocks */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* the ruled left rail used across panels */
+.rail {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #223049 0px,
+    #223049 1px,
+    transparent 1px,
+    transparent 28px
+  );
+}
+
+::selection {
+  background: #C99A44;
+  color: #0B1220;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #4FB8B0;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
