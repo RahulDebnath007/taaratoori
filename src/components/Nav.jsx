@@ -3,524 +3,157 @@ import { NavLink } from 'react-router-dom'
 import { rooms } from '../data/content'
 
 const links = [
-  {
-    name: 'Home',
-    path: '/',
-  },
+  { name: 'Home', path: '/' },
   ...rooms.map((room) => ({
     name: room.name,
     path: room.path,
   })),
+  { name: 'Careers', path: '/careers' },
 ]
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  function closeMenu() {
+    setMenuOpen(false)
+  }
+
   return (
-    <header
-      className="
-        sticky
-        top-0
-        z-50
-        bg-ink/90
-        backdrop-blur-xl
-        border-b
-        border-rule
-      "
-    >
-      {/* =====================================================
-          TOP ACCENT LINE
-      ===================================================== */}
-
-      <div
-        className="
-          absolute
-          top-0
-          left-0
-          right-0
-          h-px
-          bg-gradient-to-r
-          from-transparent
-          via-gold/50
-          to-transparent
-          pointer-events-none
-        "
-      />
-
-      {/* =====================================================
-          MAIN NAVBAR
-      ===================================================== */}
-
-      <div
-        className="
-          relative
-          max-w-6xl
-          mx-auto
-          px-5
-          sm:px-10
-          h-[72px]
-          flex
-          items-center
-          justify-between
-          gap-6
-        "
-      >
-
-        {/* =================================================
-            LOGO
-        ================================================= */}
-
+    <header className="sticky top-0 z-50 border-b border-rule bg-ink/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6 sm:px-10">
         <NavLink
           to="/"
-          onClick={() => setMenuOpen(false)}
-          className="
-            group
-            flex
-            items-center
-            gap-3
-            shrink-0
-          "
+          onClick={closeMenu}
+          className="shrink-0"
         >
-          {/* Logo status dot */}
-          <span className="relative flex w-2 h-2">
-            <span
-              className="
-                absolute
-                inset-0
-                rounded-full
-                bg-teal
-                opacity-40
-                animate-ping
-              "
-            />
+          <div className="flex items-center gap-3">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-teal/40">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal shadow-[0_0_10px_rgba(79,184,176,0.8)]" />
+            </span>
 
-            <span
-              className="
-                relative
-                w-2
-                h-2
-                rounded-full
-                bg-teal
-                shadow-[0_0_10px_rgba(79,184,176,0.7)]
-              "
-            />
-          </span>
-
-          {/* Logo text */}
-          <span
-            className="
-              font-display
-              text-lg
-              sm:text-xl
-              tracking-tight
-              text-paper
-              group-hover:text-white
-              transition-colors
-              duration-300
-            "
-          >
-            Taara Toori
-          </span>
-
-          {/* System label */}
-          <span
-            className="
-              hidden
-              xl:block
-              text-[8px]
-              text-muted
-              uppercase
-              tracking-[0.18em]
-              border-l
-              border-rule
-              pl-3
-              ml-1
-            "
-          >
-            System
-          </span>
+            <div>
+              <p className="font-display text-lg leading-none tracking-tight">
+                Taara Toori
+              </p>
+              <p className="mt-1 text-[8px] tracking-[0.25em] text-muted">
+                SYSTEM
+              </p>
+            </div>
+          </div>
         </NavLink>
 
-
-        {/* =================================================
-            DESKTOP NAVIGATION
-        ================================================= */}
-
-        <nav
-          className="
-            hidden
-            md:flex
-            items-center
-            gap-1
-          "
-        >
+        {/* DESKTOP NAV */}
+        <nav className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               end={link.path === '/'}
               className={({ isActive }) =>
-                `
-                  group
-                  relative
-                  flex
-                  items-center
-                  px-3
-                  lg:px-3.5
-                  py-2.5
-                  rounded-lg
-                  whitespace-nowrap
-                  text-sm
-                  transition-all
-                  duration-300
-
-                  ${
-                    isActive
-                      ? 'text-gold bg-gold/5'
-                      : 'text-muted hover:text-paper hover:bg-white/5'
-                  }
-                `
+                `relative rounded-full px-3 py-2 text-sm whitespace-nowrap transition-all duration-200 ${
+                  isActive
+                    ? 'bg-panel text-gold'
+                    : 'text-muted hover:bg-panel/70 hover:text-paper'
+                }`
               }
             >
               {({ isActive }) => (
                 <>
-                  {/* Navigation label */}
-                  <span>
-                    {link.name}
-                  </span>
+                  {link.name}
 
-                  {/* Active underline */}
                   {isActive && (
-                    <span
-                      className="
-                        absolute
-                        left-3
-                        right-3
-                        bottom-0
-                        h-px
-                        bg-gold
-                      "
-                    />
+                    <span className="absolute bottom-0 left-1/2 h-px w-8 -translate-x-1/2 bg-gold" />
                   )}
-
-                  {/* Hover effect */}
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-0
-                      rounded-lg
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-opacity
-                      duration-300
-                      bg-gradient-to-r
-                      from-transparent
-                      via-white/5
-                      to-transparent
-                    "
-                  />
                 </>
               )}
             </NavLink>
           ))}
         </nav>
 
-
-        {/* =================================================
-            DESKTOP SYSTEM STATUS
-        ================================================= */}
-
-        <div
-          className="
-            hidden
-            lg:flex
-            items-center
-            gap-3
-            shrink-0
-            pl-5
-            border-l
-            border-rule
-          "
-        >
-          <span
-            className="
-              text-[8px]
-              text-muted
-              uppercase
-              tracking-[0.18em]
-            "
-          >
-            Online
+        {/* ONLINE STATUS */}
+        <div className="hidden items-center gap-2 sm:flex">
+          <span className="text-[9px] tracking-[0.2em] text-muted">
+            ONLINE
           </span>
-
-          <span className="relative flex w-1.5 h-1.5">
-            <span
-              className="
-                absolute
-                inset-0
-                rounded-full
-                bg-teal
-                opacity-50
-                animate-ping
-              "
-            />
-
-            <span
-              className="
-                relative
-                w-1.5
-                h-1.5
-                rounded-full
-                bg-teal
-                shadow-[0_0_8px_rgba(79,184,176,0.8)]
-              "
-            />
-          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-teal shadow-[0_0_10px_rgba(79,184,176,0.8)] animate-pulse" />
         </div>
 
-
-        {/* =================================================
-            MOBILE MENU BUTTON
-        ================================================= */}
-
+        {/* MOBILE BUTTON */}
         <button
           type="button"
-          aria-label={
-            menuOpen
-              ? 'Close navigation'
-              : 'Open navigation'
-          }
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="
-            md:hidden
-            relative
-            flex
-            items-center
-            justify-center
-            w-10
-            h-10
-            rounded-lg
-            border
-            border-rule
-            bg-panel/40
-            text-muted
-            hover:text-paper
-            hover:border-teal/40
-            transition-all
-            duration-300
-          "
+          onClick={() => setMenuOpen((open) => !open)}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-rule bg-panel/70 text-paper transition-colors hover:border-teal/40 md:hidden"
         >
-          {/* Hamburger / Close icon */}
-          <span className="relative w-5 h-4 block">
-
-            {/* Top */}
+          <span className="flex w-4 flex-col gap-1.5">
             <span
-              className={`
-                absolute
-                left-0
-                w-5
-                h-px
-                bg-current
-                transition-all
-                duration-300
-                ${
-                  menuOpen
-                    ? 'top-2 rotate-45'
-                    : 'top-0'
-                }
-              `}
+              className={`h-px w-full bg-current transition-transform duration-300 ${
+                menuOpen ? 'translate-y-[4px] rotate-45' : ''
+              }`}
             />
-
-            {/* Middle */}
             <span
-              className={`
-                absolute
-                left-0
-                top-2
-                w-5
-                h-px
-                bg-current
-                transition-all
-                duration-300
-                ${
-                  menuOpen
-                    ? 'opacity-0'
-                    : 'opacity-100'
-                }
-              `}
+              className={`h-px w-full bg-current transition-opacity duration-300 ${
+                menuOpen ? 'opacity-0' : ''
+              }`}
             />
-
-            {/* Bottom */}
             <span
-              className={`
-                absolute
-                left-0
-                w-5
-                h-px
-                bg-current
-                transition-all
-                duration-300
-                ${
-                  menuOpen
-                    ? 'top-2 -rotate-45'
-                    : 'top-4'
-                }
-              `}
+              className={`h-px w-full bg-current transition-transform duration-300 ${
+                menuOpen ? '-translate-y-[4px] -rotate-45' : ''
+              }`}
             />
-
           </span>
         </button>
-
       </div>
 
-
-      {/* =====================================================
-          MOBILE MENU
-      ===================================================== */}
-
+      {/* MOBILE MENU */}
       <div
-        className={`
-          md:hidden
-          overflow-hidden
-          bg-ink/95
-          backdrop-blur-xl
-          border-t
-          border-rule
-          transition-all
-          duration-300
-          ${
-            menuOpen
-              ? 'max-h-[500px] opacity-100'
-              : 'max-h-0 opacity-0 border-t-transparent'
-          }
-        `}
+        className={`overflow-hidden border-t border-rule transition-all duration-300 md:hidden ${
+          menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
       >
-        <nav className="px-5 py-4">
-
-          {/* Mobile menu header */}
-          <div
-            className="
-              flex
-              items-center
-              justify-between
-              mb-2
-              pb-3
-              border-b
-              border-rule
-            "
-          >
-            <span
-              className="
-                text-[9px]
-                text-muted
-                uppercase
-                tracking-[0.2em]
-              "
-            >
-              Navigation
-            </span>
-
-            <span
-              className="
-                flex
-                items-center
-                gap-2
-                text-[9px]
-                text-teal
-                uppercase
-                tracking-[0.15em]
-              "
-            >
-              <span
-                className="
-                  w-1.5
-                  h-1.5
-                  rounded-full
-                  bg-teal
-                  shadow-[0_0_7px_rgba(79,184,176,0.7)]
-                "
-              />
-
-              Online
-            </span>
-          </div>
-
-
-          {/* Mobile links */}
-          <div className="flex flex-col">
-
+        <nav className="mx-auto max-w-6xl px-6 py-4 sm:px-10">
+          <div className="rounded-2xl border border-rule bg-panel/50 p-2">
             {links.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 end={link.path === '/'}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
                 className={({ isActive }) =>
-                  `
-                    group
-                    relative
-                    flex
-                    items-center
-                    justify-between
-                    py-4
-                    border-b
-                    border-rule/70
-                    transition-all
-                    duration-300
-
-                    ${
-                      isActive
-                        ? 'text-gold'
-                        : 'text-muted hover:text-paper'
-                    }
-                  `
+                  `flex items-center justify-between rounded-xl px-4 py-3.5 text-sm transition-colors ${
+                    isActive
+                      ? 'bg-ink text-gold'
+                      : 'text-muted hover:bg-ink/70 hover:text-paper'
+                  }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    {/* Link name */}
-                    <span className="text-sm">
-                      {link.name}
-                    </span>
+                    <span>{link.name}</span>
 
-                    {/* Arrow */}
-                    <span
-                      className={`
-                        text-sm
-                        transition-all
-                        duration-300
-                        ${
-                          isActive
-                            ? 'text-teal translate-x-0'
-                            : 'text-muted/40 -translate-x-1 group-hover:text-muted group-hover:translate-x-0'
-                        }
-                      `}
-                    >
-                      →
-                    </span>
-
-                    {/* Active line */}
                     {isActive && (
-                      <span
-                        className="
-                          absolute
-                          left-0
-                          bottom-[-1px]
-                          w-10
-                          h-px
-                          bg-gold
-                        "
-                      />
+                      <span className="flex items-center gap-2 text-[9px] tracking-[0.15em] text-gold">
+                        ACTIVE
+                        <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                      </span>
                     )}
                   </>
                 )}
               </NavLink>
             ))}
-
           </div>
 
+          <div className="mt-4 flex items-center justify-between px-2 pb-2">
+            <span className="text-[9px] tracking-[0.2em] text-muted">
+              TAARA TOORI / SYSTEM
+            </span>
+
+            <span className="flex items-center gap-2 text-[9px] tracking-[0.2em] text-teal">
+              ONLINE
+              <span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" />
+            </span>
+          </div>
         </nav>
       </div>
     </header>

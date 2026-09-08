@@ -7,6 +7,7 @@ import Events from './pages/Events'
 import Employees from './pages/Employees'
 import EmployeeDetail from './pages/EmployeeDetail'
 import Samples from './pages/Samples'
+import Careers from './pages/Careers'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/employees" element={<Employees />} />
           <Route path="/employees/:id" element={<EmployeeDetail />} />
           <Route path="/samples" element={<Samples />} />
+          <Route path="/careers" element={<Careers />} />
         </Routes>
       </main>
       <Footer />
