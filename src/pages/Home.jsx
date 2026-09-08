@@ -63,14 +63,14 @@ export default function Home() {
             {/* Main heading */}
             <h1 className="font-display text-[3.5rem] sm:text-6xl lg:text-[5.8rem] xl:text-[6.5rem] font-medium leading-[0.91] tracking-[-0.035em] max-w-4xl">
 
-              The future is
+              The Future is
 
               <span className="block">
-                quantum.
+                Quantum.
               </span>
 
               <span className="block mt-1">
-                We compute it.
+                We Compute it.
               </span>
 
             </h1>
