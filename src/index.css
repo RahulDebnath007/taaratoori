@@ -50,3 +50,38 @@ input:focus-visible {
     transition-duration: 0.001ms !important;
   }
 }
+
+.status-dot {
+  animation: dotBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+}
+
+@keyframes quantumBlink {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(79, 184, 176, 0.8);
+  }
+
+  50% {
+    opacity: 0.25;
+    transform: scale(0.7);
+    box-shadow: 0 0 3px rgba(79, 184, 176, 0.2);
+  }
+}
+
+.quantum-blink {
+  animation: quantumBlink 1.5s ease-in-out infinite;
+}

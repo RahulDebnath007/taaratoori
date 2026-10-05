@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/employees/:id" element={<EmployeeDetail />} />
           <Route path="/samples" element={<Samples />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/workforce" element={<Workforce />} />
+          <Route path="/quantum-workforce" element={<Workforce />} />
         </Routes>
       </main>
       <Footer />
