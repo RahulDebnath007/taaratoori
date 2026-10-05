@@ -8,6 +8,7 @@ import Employees from './pages/Employees'
 import EmployeeDetail from './pages/EmployeeDetail'
 import Samples from './pages/Samples'
 import Careers from './pages/Careers'
+import Workforce from './pages/Workforce'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/employees/:id" element={<EmployeeDetail />} />
           <Route path="/samples" element={<Samples />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/workforce" element={<Workforce />} />
         </Routes>
       </main>
       <Footer />
